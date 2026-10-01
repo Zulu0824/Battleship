@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battleship</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <div id="header-section">
+      <p>BATTLESHIP</p>
+    </div>
+    <div id="board-section">
+      <div id="score-section">
+        <div id="score-text">
+          <p id="score"></p>
+          <p id="status"></p>
+        </div>
+        <button id="restart">New game</button>
+      </div>
+      <div id="game-boards">
+        <section class="board-wrap">
+          <h2>Your Fleet</h2>
+          <div class="map">
+            <div class="col-labels"></div>
+            <div class="row-labels"></div>
+            <div id="user-board"></div>
+          </div>
+        </section>
+        <section class="board-wrap">
+          <h2>Enemy Waters</h2>
+          <div class="map">
+            <div class="col-labels"></div>
+            <div class="row-labels"></div>
+            <div id="cpu-board"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <footer></footer>
+    <dialog id="gameover-dialog">
+      <h2 id="gameover-title"></h2>
+      <p id="gameover-text"></p>
+      <div class="dialog-buttons">
+        <button id="play-again">Play again</button>
+        <button id="view-board">View board</button>
+      </div>
+    </dialog>
+  </body>
+</html>
