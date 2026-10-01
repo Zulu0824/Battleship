@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
+
 :root {
   --primary-color: #001d3d;
   --secondary-color: #e5e5e5;
 }
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -10,7 +12,7 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--primary-color);
   display: grid;
   grid-template-rows: 100px 1fr 100px;
@@ -37,6 +39,15 @@ body {
 
 #score-section {
   background-color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+#restart {
+  padding: 8px 16px;
+  cursor: pointer;
 }
 
 #game-boards {
@@ -44,6 +55,7 @@ body {
   grid-template-columns: 1fr 1fr;
   background-color: var(--primary-color);
 }
+
 #user-board,
 #cpu-board {
   display: grid;
@@ -63,13 +75,15 @@ body {
 .ship {
   background-color: #5c677d;
 }
+
 .hit {
   background-color: crimson;
 }
+
 .miss {
   background-color: #8d99ae;
 }
+
 .grid-buttons:disabled {
   cursor: not-allowed;
-  background-color: darkslategrey;
 }

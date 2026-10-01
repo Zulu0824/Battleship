@@ -16,3 +16,9 @@ export function renderBoard(container, board, showShips) {
     }
   }
 }
+
+export function markCell(container, x, y, hit) {
+  const btn = container.querySelector(`[data-x="${x}"][data-y="${y}"]`);
+  btn.disabled = true;
+  btn.classList.add(hit ? "hit" : "miss");
+}
