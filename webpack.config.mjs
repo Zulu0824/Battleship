@@ -1,4 +1,4 @@
-// webpack.config.js
+// webpack.config.mjs
 import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
