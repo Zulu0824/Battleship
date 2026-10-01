@@ -1,4 +1,4 @@
-import { Ship } from "./ship";
+import { Ship } from "./ship.js";
 
 export class Gameboard {
   constructor() {
@@ -7,21 +7,26 @@ export class Gameboard {
     this.missed = [];
     this.grid = new Map();
   }
+
   placeShip(x, y, length, horizontal = true) {
     const ship = new Ship(length);
     const cells = [];
-    const key = `${x},${y}`;
 
     for (let i = 0; i < length; i++) {
+      const cx = horizontal ? x + i : x;
+      const cy = horizontal ? y : y + i;
+
       if (cx < 0 || cx > 9 || cy < 0 || cy > 9) {
         throw new Error("Ship out of bounds!");
       }
+      const key = `${cx},${cy}`;
       if (this.grid.has(key)) {
         throw new Error("Cell is already occupied!");
       }
       cells.push(key);
     }
-    cells.forEach((key) => this.grid.set(key));
+
+    cells.forEach((key) => this.grid.set(key, ship));
     this.ships.push(ship);
     return ship;
   }
@@ -30,24 +35,19 @@ export class Gameboard {
     const key = `${x},${y}`;
     if (this.attacked.has(key)) {
       return false;
-    } else {
-      this.attacked.add(key);
     }
+    this.attacked.add(key);
+
     const ship = this.grid.get(key);
     if (ship) {
       ship.hit();
       return true;
-    } else {
-      this.missed.push([x, y]);
-      return false;
     }
+    this.missed.push([x, y]);
+    return false;
   }
 
   allSunk() {
-    if (this.ships.length > 0 && this.every.ship((ship) => ship.isSunk())) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.ships.length > 0 && this.ships.every((ship) => ship.isSunk());
   }
 }
