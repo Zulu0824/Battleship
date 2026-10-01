@@ -29,3 +29,12 @@ body {
   color: var(--secondary-color);
   font-size: 4rem;
 }
+
+#board-section {
+  display: grid;
+  grid-template-rows: 75px 1fr;
+}
+
+#score-section {
+  background-color: var(--secondary-color);
+}
