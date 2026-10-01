@@ -2,6 +2,11 @@ import { renderBoard, renderLabels, markCell, toCoord } from "./ui.js";
 import { Player } from "./player.js";
 import { playShot } from "./sounds.js";
 
+const gameoverDialog = document.getElementById("gameover-dialog");
+const gameoverTitle = document.getElementById("gameover-title");
+const gameoverText = document.getElementById("gameover-text");
+const playAgainBtn = document.getElementById("play-again");
+const viewBoardBtn = document.getElementById("view-board");
 const userBoard = document.getElementById("user-board");
 const cpuBoard = document.getElementById("cpu-board");
 const score = document.getElementById("score");
@@ -15,6 +20,7 @@ let player2;
 let playerTurn;
 let gameOver;
 let cpuTimer;
+let dialogTimer;
 let targetQueue;
 
 function shipsLeft(board) {
@@ -25,11 +31,18 @@ function updateStatus(message) {
   score.textContent = `Your ships: ${shipsLeft(player1.gameboard)} | CPU ships: ${shipsLeft(player2.gameboard)}`;
   status.textContent = message;
 }
-
-function endGame(message) {
+function endGame(playerWon, message) {
   gameOver = true;
   playerTurn = false;
   updateStatus(message);
+
+  dialogTimer = setTimeout(() => {
+    gameoverTitle.textContent = playerWon ? "Victory!" : "Defeat";
+    gameoverText.textContent = playerWon
+      ? `You sank the enemy fleet with ${shipsLeft(player1.gameboard)} ship(s) left.`
+      : `The CPU sank your fleet. Enemy ships left: ${shipsLeft(player2.gameboard)}.`;
+    gameoverDialog.showModal();
+  }, 800);
 }
 
 function queueNeighbors(x, y) {
@@ -72,7 +85,7 @@ function cpuAttack() {
   markCell(userBoard, x, y, hit);
 
   if (board.allSunk()) {
-    endGame(`CPU fired at ${toCoord(x, y)} and wins!`);
+    endGame(false, `CPU fired at ${toCoord(x, y)} and wins!`);
     return;
   }
 
@@ -122,7 +135,7 @@ cpuBoard.addEventListener("click", (e) => {
   markCell(cpuBoard, x, y, hit);
 
   if (player2.gameboard.allSunk()) {
-    endGame(`You fired at ${toCoord(x, y)} and win!`);
+    endGame(true, `You fired at ${toCoord(x, y)} and win!`);
     return;
   }
 
@@ -137,6 +150,8 @@ cpuBoard.addEventListener("click", (e) => {
 });
 
 restartBtn.addEventListener("click", newGame);
+playAgainBtn.addEventListener("click", newGame);
+viewBoardBtn.addEventListener("click", () => gameoverDialog.close());
 
 renderLabels();
 newGame();
