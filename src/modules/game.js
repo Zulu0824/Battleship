@@ -1,6 +1,5 @@
 import { renderBoard } from "./ui";
 import { Player } from "./player";
-import { Gameboard } from "./gameBoard";
 
 const player1 = new Player("User", "human");
 const player2 = new Player("CPU", "computer");
@@ -19,7 +18,7 @@ const cpuBoard = document.getElementById("cpu-board");
 renderBoard(userBoard, player1.gameboard, true);
 renderBoard(cpuBoard, player2.gameboard, false);
 
-userGrid.addEventListener("click", (e) => {
+cpuBoard.addEventListener("click", (e) => {
   e.target.disabled = true;
   const x = e.target.dataset.x;
   const y = e.target.dataset.y;

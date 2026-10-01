@@ -59,3 +59,17 @@ body {
   background-color: var(--secondary-color);
   cursor: pointer;
 }
+
+.ship {
+  background-color: #5c677d;
+}
+.hit {
+  background-color: crimson;
+}
+.miss {
+  background-color: #8d99ae;
+}
+.grid-buttons:disabled {
+  cursor: not-allowed;
+  background-color: darkslategrey;
+}
