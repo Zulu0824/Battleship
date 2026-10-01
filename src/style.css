@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
+:root {
+  --primary-color: #001d3d;
+  --secondary-color: #e5e5e5;
+}
 * {
   box-sizing: border-box;
   padding: 0;
@@ -6,5 +11,21 @@
 
 body {
   height: 100vh;
-  background-color: lightblue;
+  background-color: var(--primary-color);
+  display: grid;
+  grid-template-rows: 100px 1fr 100px;
+}
+
+#header-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  border-bottom: 2px solid black;
+}
+
+#header-section p {
+  font-family: "Black Ops One";
+  color: var(--secondary-color);
+  font-size: 4rem;
 }
