@@ -174,7 +174,6 @@ body {
     transform 0.15s;
 }
 
-/* Only the enemy board looks clickable */
 #cpu-board .grid-buttons:not(:disabled) {
   cursor: crosshair;
 }
@@ -191,7 +190,7 @@ body {
 }
 
 .ship {
-  background-color: #5c677d;
+  background-color: #181b20;
 }
 
 .hit {
