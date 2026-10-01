@@ -38,3 +38,24 @@ body {
 #score-section {
   background-color: var(--secondary-color);
 }
+
+#game-boards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--primary-color);
+}
+#user-board,
+#cpu-board {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  grid-template-rows: repeat(10, 40px);
+  background-color: var(--primary-color);
+  align-self: center;
+  justify-self: center;
+  border: none;
+}
+
+.grid-buttons {
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
