@@ -31,6 +31,27 @@ export class Gameboard {
     return ship;
   }
 
+  placeShipsRandomly(lengths = [5, 4, 3, 3, 2]) {
+    for (const length of lengths) {
+      let placed = false;
+
+      while (!placed) {
+        const horizontal = Math.random() < 0.5;
+        const maxX = horizontal ? 10 - length : 9;
+        const maxY = horizontal ? 9 : 10 - length;
+        const x = Math.floor(Math.random() * (maxX + 1));
+        const y = Math.floor(Math.random() * (maxY + 1));
+
+        try {
+          this.placeShip(x, y, length, horizontal);
+          placed = true;
+        } catch {
+          // cell already occupied, try another spot
+        }
+      }
+    }
+  }
+
   receiveAttack(x, y) {
     const key = `${x},${y}`;
     if (this.attacked.has(key)) {
@@ -49,23 +70,5 @@ export class Gameboard {
 
   allSunk() {
     return this.ships.length > 0 && this.ships.every((ship) => ship.isSunk());
-  }
-  placeShipsRandomly(lengths = [5, 4, 3, 3, 2]) {
-    for (const length of lengths) {
-      let placed = false;
-
-      while (!placed) {
-        const horizontal = Math.random() < 0.5;
-        const maxX = horizontal ? 10 - length : 9;
-        const maxY = horizontal ? 9 : 10 - length;
-        const x = Math.floor(Math.random() * (maxX + 1));
-        const y = Math.floor(Math.random() * (maxY + 1));
-
-        try {
-          this.placeShip(x, y, length, horizontal);
-          placed = true;
-        } catch {}
-      }
-    }
   }
 }

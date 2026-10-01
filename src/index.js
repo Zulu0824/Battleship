@@ -4,3 +4,4 @@ import "./modules/ship.js";
 import "./style.css";
 import "./modules/ui.js";
 import "./modules/game.js";
+import "./modules/sounds.js";
