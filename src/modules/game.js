@@ -1,4 +1,4 @@
-import { renderBoard, markCell } from "./ui.js";
+import { renderBoard, renderLabels, markCell, toCoord } from "./ui.js";
 import { Player } from "./player.js";
 
 const userBoard = document.getElementById("user-board");
@@ -41,11 +41,13 @@ function cpuAttack() {
   markCell(userBoard, x, y, hit);
 
   if (board.allSunk()) {
-    endGame("CPU wins!");
+    endGame(`CPU fired at ${toCoord(x, y)} and wins!`);
     return;
   }
   playerTurn = true;
-  updateStatus("Your turn");
+  updateStatus(
+    `CPU fired at ${toCoord(x, y)}: ${hit ? "hit" : "miss"}. Your turn`,
+  );
 }
 
 function newGame() {
@@ -77,15 +79,18 @@ cpuBoard.addEventListener("click", (e) => {
   markCell(cpuBoard, x, y, hit);
 
   if (player2.gameboard.allSunk()) {
-    endGame("You win!");
+    endGame(`You fired at ${toCoord(x, y)} and win!`);
     return;
   }
 
   playerTurn = false;
-  updateStatus("CPU is thinking...");
+  updateStatus(
+    `You fired at ${toCoord(x, y)}: ${hit ? "hit" : "miss"}. CPU is thinking...`,
+  );
   cpuTimer = setTimeout(cpuAttack, CPU_DELAY);
 });
 
 restartBtn.addEventListener("click", newGame);
 
+renderLabels();
 newGame();

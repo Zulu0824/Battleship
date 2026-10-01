@@ -15,8 +15,22 @@
         <button id="restart">New game</button>
       </div>
       <div id="game-boards">
-        <div id="user-board"></div>
-        <div id="cpu-board"></div>
+        <section class="board-wrap">
+          <h2>Your Fleet</h2>
+          <div class="map">
+            <div class="col-labels"></div>
+            <div class="row-labels"></div>
+            <div id="user-board"></div>
+          </div>
+        </section>
+        <section class="board-wrap">
+          <h2>Enemy Waters</h2>
+          <div class="map">
+            <div class="col-labels"></div>
+            <div class="row-labels"></div>
+            <div id="cpu-board"></div>
+          </div>
+        </section>
       </div>
     </div>
     <footer></footer>

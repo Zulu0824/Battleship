@@ -1,3 +1,29 @@
+const COLUMNS = "ABCDEFGHIJ";
+
+export function toCoord(x, y) {
+  return `${COLUMNS[x]}${y}`;
+}
+
+export function renderLabels() {
+  document.querySelectorAll(".col-labels").forEach((el) => {
+    el.innerHTML = "";
+    for (const letter of COLUMNS) {
+      const span = document.createElement("span");
+      span.textContent = letter;
+      el.appendChild(span);
+    }
+  });
+
+  document.querySelectorAll(".row-labels").forEach((el) => {
+    el.innerHTML = "";
+    for (let i = 0; i < 10; i++) {
+      const span = document.createElement("span");
+      span.textContent = i;
+      el.appendChild(span);
+    }
+  });
+}
+
 export function renderBoard(container, board, showShips) {
   container.innerHTML = "";
 
@@ -8,6 +34,7 @@ export function renderBoard(container, board, showShips) {
       btn.classList.add("grid-buttons");
       btn.dataset.x = x;
       btn.dataset.y = y;
+      btn.title = toCoord(x, y);
 
       if (showShips && board.grid.has(key)) {
         btn.classList.add("ship");
