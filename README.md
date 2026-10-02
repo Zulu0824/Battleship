@@ -23,12 +23,6 @@ The game does not yet support placing your own ships by drag and drop.
 5. Jest
 6. ESLint
 
-## Running locally
-
-    npm install
-    npm start
-    npm test
-
 ## Resources used
 
 1. [Google Fonts](https://fonts.google.com/)
